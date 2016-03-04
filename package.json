@@ -1,0 +1,24 @@
+{
+  "name": "lu-cli",
+  "version": "0.1.1",
+  "description": "for page development.",
+  "main": "index.js",
+  "scripts": {
+    "compile": "babel -d bin/ src/",
+    "prepublish": "npm run compile",
+    "start": "npm run compile -- --watch"
+  },
+  "author": "mochen <imochen@163.com>",
+  "license": "MIT",
+  "bin": {
+    "lu": "./index.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.0",
+    "babel-preset-es2015": "^6.6.0"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.9.0"
+  }
+}
