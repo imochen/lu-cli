@@ -1,7 +1,8 @@
 var gulp = require('gulp'); //gulp
 var less = require('gulp-less'); //less编译
 var minifyCss = require('gulp-minify-css'); //css压缩
-var autoprefixer = require('gulp-autoprefixer'); //自动补全前缀
+
+var postcss = require('gulp-postcss');
 
 var LessPluginFunctions = require('less-plugin-functions'); //less functions插件
 functions = new LessPluginFunctions();
@@ -67,9 +68,14 @@ gulp.task('css',function(){
       gutil.log('Less Error!', err.message );
       this.end();
     })
-    .pipe(autoprefixer({
-      browser : ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'android 4', '> 1%']
-    }))
+    .pipe(postcss([
+      require('oldie')({
+        opacity: {
+          method: 'copy'
+        }
+      }),
+      require('autoprefixer')({browsers: ['last 5 version', 'safari 5', 'ie 8', 'ie 9', 'android 4', '> 1%']})
+    ]))
     .pipe( mode === 'dev' ? gutil.noop() : minifyCss() )
     .pipe( gulp.dest( __dest( config.css.dest) ) )
     .pipe( mode === 'dev' ? livereload() : gutil.noop() );
