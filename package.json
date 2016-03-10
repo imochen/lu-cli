@@ -1,6 +1,6 @@
 {
   "name": "lu-cli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "for page development.",
   "main": "index.js",
   "scripts": {

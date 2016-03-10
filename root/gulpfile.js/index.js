@@ -67,7 +67,9 @@ gulp.task('css',function(){
       gutil.log('Less Error!', err.message );
       this.end();
     })
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(autoprefixer({
+      browser : ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'android 4', '> 1%']
+    }))
     .pipe( mode === 'dev' ? gutil.noop() : minifyCss() )
     .pipe( gulp.dest( __dest( config.css.dest) ) )
     .pipe( mode === 'dev' ? livereload() : gutil.noop() );
